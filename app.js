@@ -26,9 +26,12 @@ function showScreen(screenId) {
 
 // Initial Splash Screen Logic
 window.addEventListener('load', () => {
+    const status = document.getElementById('boot-status');
+    setTimeout(() => { if(status) status.innerHTML = '<i class="fas fa-shield-check"></i> Firewall Active...'; }, 1000);
+    setTimeout(() => { if(status) status.innerHTML = '<i class="fas fa-key"></i> E2E Encryption Ready...'; }, 2000);
     setTimeout(() => {
         showScreen('login');
-    }, 3000);
+    }, 3500);
 });
 
 // --- AUTH LOGIC (BREVO) ---
