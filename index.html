@@ -71,6 +71,21 @@
             <button class="premium-btn" onclick="verifyEmailOTP()">Verify & Unlock</button>
         </div>
 
+        <!-- Profile Setup -->
+        <div id="profile-setup" class="screen hidden fade-in">
+            <h2 class="font-36 mt-60 text-bold">Setup Profile</h2>
+            <p class="text-dim mb-50">Tell us your name to personalize your vault.</p>
+            
+            <div class="glass-input">
+                <i class="fas fa-user text-primary" aria-hidden="true"></i>
+                <input type="text" placeholder="Your Full Name" id="name-input" aria-label="Full Name">
+            </div>
+
+            <button class="premium-btn" onclick="saveProfile()">
+                Complete Setup <i class="fas fa-check ml-10" aria-hidden="true"></i>
+            </button>
+        </div>
+
         <!-- Dashboard -->
         <div id="dashboard" class="screen hidden fade-in">
             <div class="dashboard-header">
