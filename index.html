@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>அரண்-Locker | Secure AI Vault</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Arima:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="mesh-glow"></div>
+    <div class="mesh-glow" style="right: -100px; bottom: -100px; background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 0%, transparent 70%);"></div>
+
+    <div id="app-container">
+        <!-- Splash Screen -->
+        <div id="splash" class="screen">
+            <div class="logo-orb">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+            <h1 style="font-size: 38px; font-weight: 700; letter-spacing: -1px;">
+                <span style="font-family: 'Arima', cursive; color: var(--accent);">அரண்</span>-Locker
+            </h1>
+            <p style="color: var(--text-dim); margin-top: 10px;">Security Beyond Limits</p>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login" class="screen hidden">
+            <h2 style="font-size: 32px; margin-top: 60px;">Welcome back</h2>
+            <p style="color: var(--text-dim); margin-bottom: 40px;">Enter your email to access your vault.</p>
+            
+            <div class="glass-input-container">
+                <i class="fas fa-at primary"></i>
+                <input type="email" placeholder="Email Address" id="email-input">
+            </div>
+
+            <button class="premium-btn" onclick="handleEmailLogin()">
+                Continue <i class="fas fa-arrow-right"></i>
+            </button>
+            <p style="text-align: center; font-size: 13px; color: var(--text-dim); margin-top: auto; margin-bottom: 20px;">
+                By continuing, you agree to our <span style="color: white;">Terms of Service</span>
+            </p>
+        </div>
+
+        <!-- OTP Screen -->
+        <div id="otp" class="screen hidden">
+            <button class="back-btn" onclick="showScreen('login')" style="background: transparent; border: none; color: white; text-align: left; margin-bottom: 30px;">
+                <i class="fas fa-chevron-left"></i> Back
+            </button>
+            <h2 style="font-size: 32px;">Verify Email</h2>
+            <p style="color: var(--text-dim); margin-bottom: 40px;">Enter the code sent to <br><span id="display-email" style="color: var(--primary);">your@email.com</span></p>
+            
+            <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-input" autofocus onkeyup="moveFocus(this, 1)">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 2)">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 3)">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 4)">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 5)">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 6)">
+            </div>
+            
+            <button class="premium-btn" onclick="verifyEmailOTP()">Verify Identity</button>
+            <p style="text-align: center; color: var(--text-dim); margin-top: 30px;">Didn't get it? <span class="primary">Resend Code</span></p>
+        </div>
+
+        <!-- Profile Setup -->
+        <div id="profile-setup" class="screen hidden">
+            <h2 style="font-size: 32px; margin-top: 60px;">Almost there</h2>
+            <p style="color: var(--text-dim); margin-bottom: 40px;">How should we call you?</p>
+            
+            <div class="glass-input-container">
+                <i class="fas fa-user-ninja primary"></i>
+                <input type="text" placeholder="Full Name" id="name-input">
+            </div>
+
+            <button class="premium-btn" onclick="saveProfile()">Go to Dashboard</button>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard" class="screen hidden" style="padding-bottom: 0;">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <p style="color: var(--text-dim); font-size: 14px;">Good Morning,</p>
+                    <h3 id="display-name" style="font-size: 24px;">Vault User</h3>
+                </div>
+                <div class="user-avatar">
+                    <img src="https://i.pravatar.cc/150?u=vaultx" alt="Avatar">
+                </div>
+            </div>
+
+            <div class="search-bar glass-input-container">
+                <i class="fas fa-search" style="color: var(--text-dim);"></i>
+                <input type="text" placeholder="Search secure files...">
+            </div>
+
+            <div class="storage-widget glass-card">
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-weight: 600;">Vault Storage</span>
+                    <span style="color: var(--accent);">75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;"></div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-dim);">1.5 GB of 2.0 GB used</p>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h4 style="font-size: 18px;">Categories</h4>
+            </div>
+            <div class="categories-grid">
+                <div class="category-item" onclick="alert('Filtering...')">
+                    <div class="cat-icon"><i class="fas fa-id-card" style="color: #FF5252;"></i></div>
+                    <p style="font-size: 12px; text-align: center; color: var(--text-dim);">Govt IDs</p>
+                </div>
+                <div class="category-item" onclick="alert('Filtering...')">
+                    <div class="cat-icon"><i class="fas fa-landmark" style="color: #00D1FF;"></i></div>
+                    <p style="font-size: 12px; text-align: center; color: var(--text-dim);">Banking</p>
+                </div>
+                <div class="category-item" onclick="alert('Filtering...')">
+                    <div class="cat-icon"><i class="fas fa-user-graduate" style="color: #FFD700;"></i></div>
+                    <p style="font-size: 12px; text-align: center; color: var(--text-dim);">Studies</p>
+                </div>
+                <div class="category-item" onclick="alert('Filtering...')">
+                    <div class="cat-icon"><i class="fas fa-ellipsis-h" style="color: #AAA;"></i></div>
+                    <p style="font-size: 12px; text-align: center; color: var(--text-dim);">Others</p>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h4 style="font-size: 18px;">Secure Files</h4>
+                <span style="color: var(--primary); font-size: 14px;">View All</span>
+            </div>
+            <div class="recent-grid">
+                <div class="glass-card" style="padding: 15px;" onclick="showScreen('viewer')">
+                    <div style="height: 100px; background: rgba(255,255,255,0.03); border-radius: 15px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-file-shield" style="font-size: 32px; color: var(--primary);"></i>
+                    </div>
+                    <p style="font-weight: 600; font-size: 14px;">Aadhaar_Card.pdf</p>
+                    <p style="font-size: 11px; color: var(--text-dim);">Encrypted • 1.2 MB</p>
+                </div>
+                <div class="glass-card" style="padding: 15px;">
+                    <div style="height: 100px; background: rgba(255,255,255,0.03); border-radius: 15px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-file-shield" style="font-size: 32px; color: var(--accent);"></i>
+                    </div>
+                    <p style="font-weight: 600; font-size: 14px;">Pan_Card.jpg</p>
+                    <p style="font-size: 11px; color: var(--text-dim);">Encrypted • 0.8 MB</p>
+                </div>
+            </div>
+
+            <button class="fab" onclick="startScan()">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="showScreen('dashboard')">
+                    <i class="fas fa-home-alt"></i>
+                    <span style="font-size: 10px;">Home</span>
+                </div>
+                <div class="nav-item" onclick="alert('Search coming soon')">
+                    <i class="fas fa-search"></i>
+                    <span style="font-size: 10px;">Search</span>
+                </div>
+                <div style="width: 80px;"></div>
+                <div class="nav-item" onclick="showScreen('hidden')">
+                    <i class="fas fa-vault"></i>
+                    <span style="font-size: 10px;">Vault</span>
+                </div>
+                <div class="nav-item" onclick="alert('Profile coming soon')">
+                    <i class="fas fa-user-circle"></i>
+                    <span style="font-size: 10px;">Settings</span>
+                </div>
+            </div>
+            <div class="home-indicator"></div>
+        </div>
+
+        <!-- Hidden Vault -->
+        <div id="hidden" class="screen hidden">
+            <button class="back-btn" onclick="showScreen('dashboard')" style="background: transparent; border: none; color: white; text-align: left; margin-bottom: 30px;">
+                <i class="fas fa-chevron-left"></i> Back
+            </button>
+            <div id="vault-lock" style="text-align: center; margin-top: 100px;">
+                <i class="fas fa-user-shield" style="font-size: 80px; color: var(--primary); margin-bottom: 30px;"></i>
+                <h2>Secondary PIN</h2>
+                <p style="color: var(--text-dim); margin-bottom: 40px;">Enter your 4-digit master PIN</p>
+                <div class="glass-input-container" style="justify-content: center;">
+                    <input type="password" id="vault-pin" maxlength="4" style="text-align: center; letter-spacing: 20px; font-size: 24px;">
+                </div>
+                <button class="premium-btn" style="width: 100%;" onclick="unlockVault()">Unlock Vault</button>
+            </div>
+            <div id="vault-content" class="hidden">
+                <h2 style="margin-bottom: 20px;">Secret Folder</h2>
+                <div class="glass-card" style="text-align: center; padding: 60px;">
+                    <i class="fas fa-folder-open" style="font-size: 40px; color: var(--text-dim); margin-bottom: 20px;"></i>
+                    <p style="color: var(--text-dim);">No private files yet</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
