@@ -73,17 +73,74 @@
 
         <!-- Profile Setup -->
         <div id="profile-setup" class="screen hidden fade-in">
-            <h2 class="font-36 mt-60 text-bold">Setup Profile</h2>
-            <p class="text-dim mb-50">Tell us your name to personalize your vault.</p>
+            <div class="setup-header">
+                <h2 class="font-32 text-bold">Complete Profile</h2>
+                <p class="text-dim">Make your vault truly yours.</p>
+            </div>
             
-            <div class="glass-input">
-                <i class="fas fa-user text-primary" aria-hidden="true"></i>
-                <input type="text" placeholder="Your Full Name" id="name-input" aria-label="Full Name">
+            <div class="avatar-picker-container">
+                <div class="avatar-ring large">
+                    <img id="setup-avatar-preview" src="https://i.pravatar.cc/150?u=aran" alt="Profile Preview">
+                    <div class="edit-overlay"><i class="fas fa-camera"></i></div>
+                </div>
             </div>
 
-            <button class="premium-btn" onclick="saveProfile()">
-                Complete Setup <i class="fas fa-check ml-10" aria-hidden="true"></i>
-            </button>
+            <div class="glass-input">
+                <i class="fas fa-user text-primary"></i>
+                <input type="text" id="name-input" placeholder="Full Name" aria-label="Full Name">
+            </div>
+
+            <div class="selection-label">Select Gender</div>
+            <div class="gender-grid">
+                <div class="gender-pill active" onclick="selectGender('male', this)">Male</div>
+                <div class="gender-pill" onclick="selectGender('female', this)">Female</div>
+                <div class="gender-pill" onclick="selectGender('other', this)">Other</div>
+            </div>
+
+            <div class="btn-group">
+                <button class="secondary-btn" onclick="skipProfile()">Skip</button>
+                <button class="premium-btn flex-1" onclick="saveProfile()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Security Setup -->
+        <div id="security-setup" class="screen hidden fade-in">
+            <div class="setup-header">
+                <h2 class="font-32 text-bold">Secure Your Vault</h2>
+                <p class="text-dim">Protect your sensitive documents.</p>
+            </div>
+
+            <div class="lock-illustration">
+                <div class="shield-glow">
+                    <i class="fas fa-lock-keyhole"></i>
+                </div>
+            </div>
+
+            <div class="selection-label text-center">Set 4-Digit Security PIN</div>
+            <div class="glass-input flex-center">
+                <input type="password" id="setup-pin" maxlength="4" class="vault-pin-input" placeholder="0000" aria-label="Set PIN" onkeyup="checkPinInput(this)">
+            </div>
+
+            <div class="security-card" id="biometric-card" style="opacity: 0.5; pointer-events: none;">
+                <div class="flex-between">
+                    <div class="flex-center gap-15">
+                        <i class="fas fa-fingerprint text-primary font-24"></i>
+                        <div>
+                            <p class="text-semibold">Biometric Lock</p>
+                            <p class="font-11 text-dim">Fingerprint or Face ID</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="biometric-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="secondary-btn" onclick="skipSecurity()">Skip</button>
+                <button class="premium-btn flex-1" onclick="saveSecurity()">Continue</button>
+            </div>
         </div>
 
         <!-- Dashboard -->

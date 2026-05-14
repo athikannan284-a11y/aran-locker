@@ -1,5 +1,5 @@
 // --- CONFIGURATION ---
-const BREVO_API_KEY = "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"; 
+const BREVO_API_KEY = "PASTE_YOUR_BREVO_API_KEY_HERE"; 
 const SENDER_EMAIL = "aran.locker@gmail.com"; 
 const GOOGLE_BACKEND_URL = "https://script.google.com/macros/s/AKfycbxXAjezktvwwvYKGbt94RaoCDAY-0FMQqvr7O7nPc6ehdZ8bywm0GovHHBphDCXyF4P/exec"; 
 const VAULT_MASTER_KEY = "VaultX-Super-Secret-Key-2026"; 
@@ -102,12 +102,53 @@ function verifyEmailOTP() {
     }
 }
 
+// --- ONBOARDING LOGIC ---
+let selectedGender = "male";
+
+function selectGender(gender, element) {
+    selectedGender = gender;
+    document.querySelectorAll('.gender-pill').forEach(p => p.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function skipProfile() {
+    userName = "Aran User";
+    showScreen('security-setup');
+}
+
 function saveProfile() {
     const nameInput = document.getElementById('name-input');
     const name = nameInput ? nameInput.value : "";
     if (name.length < 2) return alert("Please enter your name");
     userName = name;
     document.getElementById('display-name').innerText = userName;
+    showScreen('security-setup');
+}
+
+function checkPinInput(input) {
+    const card = document.getElementById('biometric-card');
+    if (input.value.length === 4) {
+        card.style.opacity = "1";
+        card.style.pointerEvents = "all";
+    } else {
+        card.style.opacity = "0.5";
+        card.style.pointerEvents = "none";
+    }
+}
+
+function skipSecurity() {
+    showScreen('dashboard');
+}
+
+function saveSecurity() {
+    const pin = document.getElementById('setup-pin').value;
+    const bioEnabled = document.getElementById('biometric-toggle').checked;
+    
+    if (pin.length > 0 && pin.length < 4) return alert("PIN must be 4 digits");
+    
+    if (pin) localStorage.setItem('vault_pin', pin);
+    localStorage.setItem('biometric_enabled', bioEnabled);
+    
     showScreen('dashboard');
 }
 
