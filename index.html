@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>அரண்-Locker | Secure AI Vault</title>
     <link rel="stylesheet" href="styles.css?v=2.0">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Arima:wght@400;700&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="mesh-bg"></div>
-    <div class="glow-orb" style="top: 10%; left: 10%;"></div>
-    <div class="glow-orb" style="bottom: 10%; right: 10%; background: #00D1FF;"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
 
     <div id="app-container">
         <!-- Splash Screen -->
@@ -24,48 +24,48 @@
                 <h1 class="brand-name">
                     <span class="brand-tamil">அரண்</span>-Locker
                 </h1>
-                <p style="color: var(--text-dim); margin-top: 15px; font-weight: 300;">Security Beyond Limits</p>
+                <p class="text-dim mt-15 text-light">Security Beyond Limits</p>
                 
-                <div id="boot-status" style="margin-top: 100px; font-size: 13px; color: var(--primary);">
-                    <i class="fas fa-circle-notch fa-spin"></i> Initializing Security Protocols...
+                <div id="boot-status" class="mt-100 font-13 text-primary">
+                    <i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i> Initializing Security Protocols...
                 </div>
             </div>
         </div>
 
         <!-- Login Screen -->
         <div id="login" class="screen hidden fade-in">
-            <h2 style="font-size: 36px; margin-top: 60px; font-weight: 700;">Welcome back</h2>
-            <p style="color: var(--text-dim); margin-bottom: 50px;">Sign in to access your secure vault.</p>
+            <h2 class="font-36 mt-60 text-bold">Welcome back</h2>
+            <p class="text-dim mb-50">Sign in to access your secure vault.</p>
             
             <div class="glass-input">
-                <i class="fas fa-at" style="color: var(--primary);"></i>
-                <input type="email" placeholder="Email Address" id="email-input">
+                <i class="fas fa-at text-primary" aria-hidden="true"></i>
+                <input type="email" placeholder="Email Address" id="email-input" aria-label="Email Address">
             </div>
 
             <button class="premium-btn" onclick="handleEmailLogin()">
-                Access Vault <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                Access Vault <i class="fas fa-arrow-right ml-10" aria-hidden="true"></i>
             </button>
             
-            <p style="text-align: center; font-size: 12px; color: var(--text-dim); margin-top: auto; margin-bottom: 30px;">
-                End-to-End Encrypted by <span style="color: var(--accent);">அரண்-Security</span>
+            <p class="text-center font-12 text-dim mt-50 mb-30">
+                End-to-End Encrypted by <span class="text-accent">அரண்-Security</span>
             </p>
         </div>
 
         <!-- OTP Screen -->
         <div id="otp" class="screen hidden fade-in">
-            <button class="back-btn" onclick="showScreen('login')" style="background: transparent; border: none; color: white; margin-bottom: 40px; font-size: 18px;">
-                <i class="fas fa-chevron-left"></i>
+            <button class="back-btn" onclick="showScreen('login')" aria-label="Back to Login">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
             </button>
-            <h2 style="font-size: 32px;">Security Check</h2>
-            <p style="color: var(--text-dim); margin-bottom: 40px;">Code sent to <span style="color: var(--primary);" id="display-email">your@email.com</span></p>
+            <h2 class="font-32">Security Check</h2>
+            <p class="text-dim mb-40">Code sent to <span class="text-primary" id="display-email">your@email.com</span></p>
             
-            <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 1)">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 2)">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 3)">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 4)">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 5)">
-                <input type="text" maxlength="1" class="otp-input" style="width: 50px; height: 65px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; text-align: center; color: white; font-size: 24px; font-weight: 700;" onkeyup="moveFocus(this, 6)">
+            <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 1)" aria-label="OTP Digit 1">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 2)" aria-label="OTP Digit 2">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 3)" aria-label="OTP Digit 3">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 4)" aria-label="OTP Digit 4">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 5)" aria-label="OTP Digit 5">
+                <input type="text" maxlength="1" class="otp-input" onkeyup="moveFocus(this, 6)" aria-label="OTP Digit 6">
             </div>
             
             <button class="premium-btn" onclick="verifyEmailOTP()">Verify & Unlock</button>
@@ -75,100 +75,100 @@
         <div id="dashboard" class="screen hidden fade-in">
             <div class="dashboard-header">
                 <div>
-                    <p style="color: var(--text-dim); font-size: 14px;">Welcome back,</p>
-                    <h3 id="display-name" style="font-size: 26px; font-weight: 700;">Aran User</h3>
+                    <p class="text-dim font-14">Welcome back,</p>
+                    <h3 id="display-name" class="font-26 text-bold">Aran User</h3>
                 </div>
                 <div class="avatar-ring">
-                    <img src="https://i.pravatar.cc/150?u=aran" alt="User">
+                    <img src="https://i.pravatar.cc/150?u=aran" alt="User Profile">
                 </div>
             </div>
 
             <div class="status-card">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 600;">Secure Cloud Storage</span>
-                    <span style="color: var(--accent); font-weight: 700;">75% Full</span>
+                <div class="flex-between">
+                    <span class="text-semibold">Secure Cloud Storage</span>
+                    <span class="text-accent text-bold">75% Full</span>
                 </div>
                 <div class="progress-track">
-                    <div class="progress-fill" style="width: 75%;"></div>
+                    <div class="progress-fill fill-75"></div>
                 </div>
-                <p id="upload-status" style="font-size: 12px; color: var(--text-dim);">1.5 GB of 2.0 GB used</p>
+                <p id="upload-status" class="font-12 text-dim">1.5 GB of 2.0 GB used</p>
             </div>
 
-            <h4 style="margin-bottom: 20px; font-size: 18px;">Smart Categories</h4>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 35px;">
+            <h4 class="mb-20 font-18">Smart Categories</h4>
+            <div class="cat-grid">
                 <div class="cat-pill" onclick="alert('Filtering Govt IDs...')">
-                    <i class="fas fa-id-card" style="color: #FF5252;"></i>
-                    <span style="font-size: 10px; color: var(--text-dim);">Govt IDs</span>
+                    <i class="fas fa-id-card icon-red" aria-hidden="true"></i>
+                    <span class="font-10 text-dim">Govt IDs</span>
                 </div>
                 <div class="cat-pill" onclick="alert('Filtering Banking...')">
-                    <i class="fas fa-credit-card" style="color: #00D1FF;"></i>
-                    <span style="font-size: 10px; color: var(--text-dim);">Banking</span>
+                    <i class="fas fa-credit-card icon-cyan" aria-hidden="true"></i>
+                    <span class="font-10 text-dim">Banking</span>
                 </div>
                 <div class="cat-pill" onclick="alert('Filtering Studies...')">
-                    <i class="fas fa-graduation-cap" style="color: #FFD700;"></i>
-                    <span style="font-size: 10px; color: var(--text-dim);">Studies</span>
+                    <i class="fas fa-graduation-cap icon-gold" aria-hidden="true"></i>
+                    <span class="font-10 text-dim">Studies</span>
                 </div>
                 <div class="cat-pill" onclick="alert('Filtering Others...')">
-                    <i class="fas fa-box-open" style="color: #FFF;"></i>
-                    <span style="font-size: 10px; color: var(--text-dim);">Others</span>
+                    <i class="fas fa-box-open icon-white" aria-hidden="true"></i>
+                    <span class="font-10 text-dim">Others</span>
                 </div>
             </div>
 
-            <h4 style="margin-bottom: 20px; font-size: 18px;">Recent Assets</h4>
-            <div style="overflow-y: auto; flex: 1; padding-bottom: 120px;">
+            <h4 class="mb-20 font-18">Recent Assets</h4>
+            <div class="doc-list">
                 <div class="doc-card" onclick="alert('Opening encrypted file...')">
-                    <div class="doc-icon-box"><i class="fas fa-file-pdf"></i></div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600; font-size: 15px;">Aadhaar_Card.pdf</p>
-                        <p style="font-size: 11px; color: var(--text-dim);">Verified • 1.2 MB • AES-256</p>
+                    <div class="doc-icon-box"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                    <div class="flex-1">
+                        <p class="text-semibold font-15">Aadhaar_Card.pdf</p>
+                        <p class="font-11 text-dim">Verified • 1.2 MB • AES-256</p>
                     </div>
-                    <i class="fas fa-chevron-right" style="color: var(--text-dim); font-size: 12px;"></i>
+                    <i class="fas fa-chevron-right text-dim font-12" aria-hidden="true"></i>
                 </div>
                 <div class="doc-card">
-                    <div class="doc-icon-box" style="color: var(--accent);"><i class="fas fa-file-image"></i></div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600; font-size: 15px;">Pan_Card_Scan.jpg</p>
-                        <p style="font-size: 11px; color: var(--text-dim);">Verified • 0.8 MB • AES-256</p>
+                    <div class="doc-icon-box text-accent"><i class="fas fa-file-image" aria-hidden="true"></i></div>
+                    <div class="flex-1">
+                        <p class="text-semibold font-15">Pan_Card_Scan.jpg</p>
+                        <p class="font-11 text-dim">Verified • 0.8 MB • AES-256</p>
                     </div>
-                    <i class="fas fa-chevron-right" style="color: var(--text-dim); font-size: 12px;"></i>
+                    <i class="fas fa-chevron-right text-dim font-12" aria-hidden="true"></i>
                 </div>
             </div>
 
-            <button class="add-fab" onclick="startScan()">
-                <i class="fas fa-plus"></i>
+            <button class="add-fab" onclick="startScan()" aria-label="Add New Asset">
+                <i class="fas fa-plus" aria-hidden="true"></i>
             </button>
 
             <div class="nav-bar">
-                <div class="nav-link active"><i class="fas fa-home-alt"></i></div>
-                <div class="nav-link"><i class="fas fa-search"></i></div>
-                <div style="width: 60px;"></div>
-                <div class="nav-link" onclick="showScreen('hidden')"><i class="fas fa-vault"></i></div>
-                <div class="nav-link"><i class="fas fa-cog"></i></div>
+                <div class="nav-link active" aria-label="Home"><i class="fas fa-home-alt" aria-hidden="true"></i></div>
+                <div class="nav-link" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                <div class="nav-spacer" aria-hidden="true"></div>
+                <div class="nav-link" onclick="showScreen('hidden')" aria-label="Vault"><i class="fas fa-vault" aria-hidden="true"></i></div>
+                <div class="nav-link" aria-label="Settings"><i class="fas fa-cog" aria-hidden="true"></i></div>
             </div>
             <div class="ios-home"></div>
         </div>
 
         <!-- Hidden Vault -->
         <div id="hidden" class="screen hidden fade-in">
-            <button class="back-btn" onclick="showScreen('dashboard')" style="background: transparent; border: none; color: white; margin-bottom: 40px; font-size: 18px;">
-                <i class="fas fa-chevron-left"></i>
+            <button class="back-btn" onclick="showScreen('dashboard')" aria-label="Back to Dashboard">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
             </button>
-            <div id="vault-lock" style="text-align: center; margin-top: 50px;">
-                <div style="width: 100px; height: 100px; background: rgba(112,0,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 30px;">
-                    <i class="fas fa-fingerprint" style="font-size: 50px; color: var(--primary);"></i>
+            <div id="vault-lock" class="text-center mt-50">
+                <div class="vault-lock-icon-container">
+                    <i class="fas fa-fingerprint text-primary font-50" aria-hidden="true"></i>
                 </div>
                 <h2>Vault Locked</h2>
-                <p style="color: var(--text-dim); margin-bottom: 40px;">Enter your 4-digit Master PIN</p>
-                <div class="glass-input" style="justify-content: center;">
-                    <input type="password" id="vault-pin" maxlength="4" style="text-align: center; letter-spacing: 20px; font-size: 24px; font-weight: 700;">
+                <p class="text-dim mb-40">Enter your 4-digit Master PIN</p>
+                <div class="glass-input flex-center">
+                    <input type="password" id="vault-pin" maxlength="4" class="vault-pin-input" aria-label="Vault PIN">
                 </div>
-                <button class="premium-btn" style="width: 100%;" onclick="unlockVault()">Unlock Secrets</button>
+                <button class="premium-btn w-full" onclick="unlockVault()">Unlock Secrets</button>
             </div>
             <div id="vault-content" class="hidden">
-                <h2 style="margin-bottom: 30px;">Hidden Secrets</h2>
-                <div style="padding: 60px 20px; text-align: center; background: var(--glass); border-radius: 30px; border: 1px dashed var(--glass-border);">
-                    <i class="fas fa-ghost" style="font-size: 40px; color: var(--text-dim); margin-bottom: 20px;"></i>
-                    <p style="color: var(--text-dim);">No ghost files detected.</p>
+                <h2 class="mb-30">Hidden Secrets</h2>
+                <div class="vault-empty-state">
+                    <i class="fas fa-ghost font-32 text-dim mb-20" aria-hidden="true"></i>
+                    <p class="text-dim">No ghost files detected.</p>
                 </div>
             </div>
         </div>
