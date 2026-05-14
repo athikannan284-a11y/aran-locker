@@ -1,7 +1,4 @@
 // --- CONFIGURATION ---
-const part1 = "xsmtpsib-b5bc36e898593a9a987041ca0725a54500c61d16ba407b2fabb3f4b8a8a0535b";
-const part2 = "-JzRNfaTTMTtA0tXw";
-const BREVO_API_KEY = part1 + part2; 
 const SENDER_EMAIL = "aran.locker@gmail.com"; 
 const GOOGLE_BACKEND_URL = "https://script.google.com/macros/s/AKfycbxXAjezktvwwvYKGbt94RaoCDAY-0FMQqvr7O7nPc6ehdZ8bywm0GovHHBphDCXyF4P/exec"; 
 const VAULT_MASTER_KEY = "VaultX-Super-Secret-Key-2026"; 
@@ -30,7 +27,7 @@ window.addEventListener('load', () => {
     setTimeout(() => { showScreen('login'); }, 3500);
 });
 
-// --- AUTH LOGIC (BREVO) ---
+// --- AUTH LOGIC (SECURE BACKEND) ---
 async function handleEmailLogin() {
     const emailInput = document.getElementById('email-input');
     const email = emailInput ? emailInput.value : "";
@@ -47,41 +44,28 @@ async function handleEmailLogin() {
     generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
     showScreen('otp');
 
-    console.log("Attempting to send OTP to:", userEmail);
+    console.log("Attempting to send OTP via Secure Backend...");
 
     try {
-        const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        const response = await fetch(GOOGLE_BACKEND_URL, {
             method: 'POST',
-            headers: { 
-                'accept': 'application/json',
-                'api-key': BREVO_API_KEY, 
-                'content-type': 'application/json' 
-            },
             body: JSON.stringify({
-                sender: { name: "Aran Locker Security", email: SENDER_EMAIL },
-                to: [{ email: userEmail }],
-                subject: "Aran-Locker Verification: " + generatedOTP,
-                htmlContent: `
-                    <div style="font-family: sans-serif; padding: 20px; background: #050505; color: white; border-radius: 15px;">
-                        <h2 style="color: #FFD700;">அரண்-Locker</h2>
-                        <p>Your verification code is:</p>
-                        <h1 style="letter-spacing: 10px; color: #7000FF;">${generatedOTP}</h1>
-                        <p style="font-size: 12px; color: #666;">Security Protocol: AES-256 Enabled</p>
-                    </div>
-                `
+                action: "sendOTP",
+                email: userEmail,
+                otp: generatedOTP
             })
         });
 
         const result = await response.json();
-        if (response.ok) {
-            console.log("OTP Sent Successfully!");
+        if (result.status === "success") {
+            console.log("OTP Sent Successfully via Backend!");
         } else {
-            console.error("Brevo Error:", result);
-            alert("Brevo Error: " + JSON.stringify(result));
+            console.error("Backend Error:", result);
+            alert("Security Error: Unable to send OTP. Please try again.");
         }
     } catch (e) { 
         console.error("Network Error:", e);
-        alert("Network Error: " + e.message); 
+        alert("Authentication Service Unavailable. Check your connection."); 
     }
 }
 
