@@ -1,5 +1,5 @@
 // --- CONFIGURATION ---
-const BREVO_API_KEY = "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"; 
+const BREVO_API_KEY = "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"; 
 const SENDER_EMAIL = "aran.locker@gmail.com"; 
 const GOOGLE_BACKEND_URL = "https://script.google.com/macros/s/AKfycbxXAjezktvwwvYKGbt94RaoCDAY-0FMQqvr7O7nPc6ehdZ8bywm0GovHHBphDCXyF4P/exec"; 
 const VAULT_MASTER_KEY = "VaultX-Super-Secret-Key-2026"; 
