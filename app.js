@@ -1,6 +1,6 @@
 // --- CONFIGURATION ---
 const SENDER_EMAIL = "aran.locker@gmail.com"; 
-const GOOGLE_BACKEND_URL = "https://script.google.com/macros/s/AKfycbxXAjezktvwwvYKGbt94RaoCDAY-0FMQqvr7O7nPc6ehdZ8bywm0GovHHBphDCXyF4P/exec"; 
+const GOOGLE_BACKEND_URL = "https://script.google.com/macros/s/AKfycbz82UQ_o9VbCe7iseYQKCZYvC2t72D9FoGtIfq2S_0FxbrVyW6bSvJVAhLdDMaLtV6i/exec"; 
 const VAULT_MASTER_KEY = "VaultX-Super-Secret-Key-2026"; 
 
 // --- STATE MANAGEMENT ---
